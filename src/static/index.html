@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Browser</title>
+  </head>
+  <body>
+    <h1>File Browser</h1>
+    <div id="file-list"></div>
+
+    <script>
+      async function fetchFiles(path = '') {
+        const response = await fetch(`/list/${path}`);
+        const files = await response.json();
+        const fileList = document.getElementById('file-list');
+        fileList.innerHTML = files.map((file) => `<div>${file}</div>`).join('');
+      }
+
+      fetchFiles();
+    </script>
+  </body>
+</html>
